@@ -1,0 +1,26 @@
+[
+    {
+      "model": "vinylvaultapi.user",
+      "pk": 1,
+      "fields": {
+        "username": "markh126",
+        "first_name": "Mark",
+        "last_name": "Hamilton",
+        "email": "ham.mark126@gmail.com",
+        "profile_image_url": "https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg",
+        "uid": ""
+      }
+    },
+    {
+        "model": "vinylvaultapi.user",
+        "pk": 2,
+        "fields": {
+          "username": "amandah64",
+          "first_name": "Amanda",
+          "last_name": "Hamilton",
+          "email": "hamiltonkamanda@gmail.com",
+          "profile_image_url": "https://www.thepinknews.com/wp-content/uploads/2023/04/Spider-Man-Across-the-Spiderverse-protect-trans-kids-poster-2.png?w=1584&h=832&crop=1",
+          "uid": ""
+        }
+      }
+  ]

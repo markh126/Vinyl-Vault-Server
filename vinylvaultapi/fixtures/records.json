@@ -1,0 +1,58 @@
+[
+    {
+      "model": "vinylvaultapi.record",
+      "pk": 1,
+      "fields": {
+        "name": "Out of Exile",
+        "record_image_url": "https://www.udiscovermusic.com/wp-content/uploads/2019/05/Audioslave-Out-Of-Exile-album-cover-web-optimised-820.jpg",
+        "artist": "Audioslave",
+        "track_list": "",
+        "genre": 1,
+        "release_date": "2005-01-01",
+        "borrowed": "False",
+        "user": 1
+      }
+    },
+    {
+        "model": "vinylvaultapi.record",
+        "pk": 2,
+        "fields": {
+          "name": "Melodrama",
+          "record_image_url": "https://assets.vogue.com/photos/58b9984661298051ac278def/master/w_2560%2Cc_limit/00-holding-lorde-album-art.jpg",
+          "artist": "Lorde",
+          "track_list": "",
+          "genre": 2,
+          "release_date": "2017-06-16",
+          "borrowed": "False",
+          "user": 1
+        }
+      },
+        {
+          "model": "vinylvaultapi.record",
+          "pk": 3,
+          "fields": {
+            "name": ".5: The Grey Chapter",
+            "record_image_url": "https://i.discogs.com/KUuNYfcwDxcUhcvbLaadEdCfRqBvwDwEnVNHIDbKpko/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIzOTM3/MzExLTE2NTgyNjE4/MzEtNjI4Mi5qcGVn.jpeg",
+            "artist": "Slipknot",
+            "track_list": "",
+            "genre": 3,
+            "release_date": "2014-10-15",
+            "borrowed": "False",
+            "user": 2
+          }
+        },
+        {
+            "model": "vinylvaultapi.record",
+            "pk": 4,
+            "fields": {
+                "name": "Run The Jewels 2",
+                "record_image_url": "https://cdn.vox-cdn.com/thumbor/lioKoEzLleZiXfFmA-xOEXWwW8A=/0x0:2040x2040/2040x2040/filters:focal(1020x1020:1021x1021)/cdn.vox-cdn.com/uploads/chorus_asset/file/20073612/runTheJewels_2_cover.jpg",
+                "artist": "Run The Jewels",
+                "track_list": "",
+                "genre": 4,
+                "release_date": "2014-10-27",
+                "borrowed": "False",
+                "user": 2
+            }
+          }
+      ]

@@ -1,0 +1,30 @@
+[
+    {
+      "model": "vinylvaultapi.genre",
+      "pk": 1,
+      "fields": {
+        "label": "rock"
+      }
+    },
+    {
+        "model": "vinylvaultapi.genre",
+        "pk": 2,
+        "fields": {
+          "label": "pop"
+        }
+      },
+      {
+        "model": "vinylvaultapi.genre",
+        "pk": 3,
+        "fields": {
+          "label": "metal"
+        }
+      },
+      {
+        "model": "vinylvaultapi.genre",
+        "pk": 4,
+        "fields": {
+          "label": "rap"
+        }
+      }
+  ]
