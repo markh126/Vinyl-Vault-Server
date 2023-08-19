@@ -6,7 +6,7 @@ from vinylvaultapi.models import User
 from vinylvaultapi.serializers import UserSerializer
 
 class UserView(ViewSet):
-    """Feet First Customer View"""
+    """Vinyl Vault User View"""
     def retrieve(self, request, pk):
         """GET request for a single user"""
         try:
@@ -25,13 +25,13 @@ class UserView(ViewSet):
     def update(self, request, pk):
         """PUT request to update a user"""
         user = User.objects.get(pk=pk)
-        # uid = request.META['HTTP_AUTHORIZATION']
+        uid = request.META['HTTP_AUTHORIZATION']
         user.first_name = request.data['firstName']
         user.last_name = request.data['lastName']
         user.email = request.data['email']
         user.username = request.data['username']
         user.profile_image_url = request.data['profileImageUrl']
         user.bio = request.data['bio']
-        # user.uid = uid
+        user.uid = uid
         user.save()
         return Response({'message': 'User UPDATED'}, status=status.HTTP_204_NO_CONTENT)
