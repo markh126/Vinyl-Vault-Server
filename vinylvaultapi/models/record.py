@@ -2,7 +2,6 @@ from django.db import models
 from .user import User
 from .genre import Genre
 
-
 class Record(models.Model):
 
     name = models.CharField(max_length=100)
