@@ -3,7 +3,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework import status
-from vinylvaultapi.models import Record, User, Genre, WishlistRecord
+from vinylvaultapi.models import Record, User, Genre, WishlistRecord, BorrowedRecord
 from vinylvaultapi.serializers import RecordSerializer
 
 class RecordView(ViewSet):
@@ -83,4 +83,27 @@ class RecordView(ViewSet):
         )
         wishlist_record.delete()
         return Response({'message': 'Removed from Wishlist'}, status=status.HTTP_204_NO_CONTENT)
+
+    @action(methods=['post'], detail=True)
+    def borrow_record(self, request, pk):
+        """POST action to borrow a record from another user"""
+        user = User.objects.get(uid=request.META['HTTP_AUTHORIZATION'])
+        record = Record.objects.get(pk=pk)
+        BorrowedRecord.objects.create(
+            user=user,
+            record=record
+        )
+        return Response({'message': 'Record borrowed'}, status=status.HTTP_201_CREATED)
+
+    @action(methods=['post'], detail=True)
+    def return_record(self, request, pk):
+        """DELETE action to return a borrowed record"""
+        user = User.objects.get(uid=request.META['HTTP_AUTHORIZATION'])
+        record = Record.objects.get(pk=pk)
+        borrowed_record = BorrowedRecord.objects.get(
+            user = user,
+            record = record
+        )
+        borrowed_record.delete()
+        return Response({'message': 'Record returned'}, status=status.HTTP_204_NO_CONTENT)
         
