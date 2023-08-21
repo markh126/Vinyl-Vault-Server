@@ -1,8 +1,9 @@
 from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
+from rest_framework.decorators import action
 from rest_framework import status
-from vinylvaultapi.models import Record, User, Genre
+from vinylvaultapi.models import Record, User, Genre, WishlistRecord
 from vinylvaultapi.serializers import RecordSerializer
 
 class RecordView(ViewSet):
@@ -24,7 +25,7 @@ class RecordView(ViewSet):
 
     def create(self, request):
         """POST request to create a new record"""
-        user = User.objects.get(pk=request.data["userId"])
+        user = User.objects.get(uid=request.META['HTTP_AUTHORIZATION'])
         genre = Genre.objects.get(pk=request.data["genreId"])
         record = Record.objects.create(
             name = request.data["name"],
@@ -35,7 +36,8 @@ class RecordView(ViewSet):
             release_date = request.data["releaseDate"],
             user = user
         )
-        return Response({'message': 'Record Created'}, status=status.HTTP_201_CREATED)
+        serializer = RecordSerializer(record)
+        return Response({'message': 'Record Created'}, serializer.data, status=status.HTTP_201_CREATED)
 
     def update(self, request, pk):
         """PUT request to update a record"""
@@ -58,3 +60,27 @@ class RecordView(ViewSet):
         record = Record.objects.get(pk=pk)
         record.delete()
         return Response({'message': 'Record DELETED'}, status=status.HTTP_204_NO_CONTENT)
+
+    @action(methods=['post'], detail=True)
+    def add_to_wishlist(self, request, pk):
+        """POST action to add a record to wishlist"""
+        user = User.objects.get(uid=request.META['HTTP_AUTHORIZATION'])
+        record = Record.objects.get(pk=pk)
+        WishlistRecord.objects.create(
+            user=user,
+            record=record
+        )
+        return Response({'message': 'Added to Wishlist'}, status=status.HTTP_201_CREATED)
+
+    @action(methods=['delete'], detail=True)
+    def remove_from_wishlist(self, request, pk):
+        """DELETE action to remove a record from wishlist"""
+        user = User.objects.get(uid=request.META['HTTP_AUTHORIZATION'])
+        record = Record.objects.get(pk=pk)
+        wishlist_record = WishlistRecord.objects.get(
+            user = user,
+            record = record
+        )
+        wishlist_record.delete()
+        return Response({'message': 'Removed from Wishlist'}, status=status.HTTP_204_NO_CONTENT)
+        
