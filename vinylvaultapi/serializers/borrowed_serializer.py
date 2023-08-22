@@ -3,7 +3,7 @@ from vinylvaultapi.models.borrowed_record import BorrowedRecord
 from vinylvaultapi.serializers import RecordSerializer, UserSerializer
 
 class BorrowedSerializer(RecordSerializer):
-    """JSON serializer for genres"""
+    """JSON serializer for borrowed records"""
     record = RecordSerializer()
     user = UserSerializer()
     class Meta:
