@@ -20,6 +20,16 @@ class RecordView(ViewSet):
     def list(self, request):
         """GET request for a list of records"""
         records = Record.objects.all()
+        uid = request.META['HTTP_AUTHORIZATION']
+        user = User.objects.get(uid=uid)
+        for record in records:
+            record.wishlisted = len(WishlistRecord.objects.filter(
+                record=record, user=user
+            )) > 0
+        for record in records:
+            record.borrowed = len(BorrowedRecord.objects.filter(
+                record=record, user=user
+            )) > 0
         serializer = RecordSerializer(records, many=True, context={'request': request})
         return Response(serializer.data)
 
@@ -95,7 +105,7 @@ class RecordView(ViewSet):
         )
         return Response({'message': 'Record borrowed'}, status=status.HTTP_201_CREATED)
 
-    @action(methods=['post'], detail=True)
+    @action(methods=['delete'], detail=True)
     def return_record(self, request, pk):
         """DELETE action to return a borrowed record"""
         user = User.objects.get(uid=request.META['HTTP_AUTHORIZATION'])

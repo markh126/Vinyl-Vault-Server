@@ -10,5 +10,22 @@ class Record(models.Model):
     track_list = models.CharField(max_length=200)
     genre = models.ForeignKey(Genre, on_delete=models.DO_NOTHING)
     release_date = models.DateField()
-    borrowed = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    @property
+    def wishlisted(self):
+        """Custom property that shows if a record is wishlisted"""
+        return self.__wishlisted
+
+    @wishlisted.setter
+    def wishlisted(self, value):
+        self.__wishlisted = value
+
+    @property
+    def borrowed(self):
+        """Custom property that shows if a record has been borrowed"""
+        return self.__borrowed
+
+    @borrowed.setter
+    def borrowed(self, value):
+        self.__borrowed = value

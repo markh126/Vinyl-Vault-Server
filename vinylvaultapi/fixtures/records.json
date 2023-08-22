@@ -9,7 +9,6 @@
         "track_list": "",
         "genre": 1,
         "release_date": "2005-01-01",
-        "borrowed": "False",
         "user": 1
       }
     },
@@ -23,7 +22,6 @@
           "track_list": "",
           "genre": 2,
           "release_date": "2017-06-16",
-          "borrowed": "False",
           "user": 1
         }
       },
@@ -37,7 +35,6 @@
             "track_list": "",
             "genre": 3,
             "release_date": "2014-10-15",
-            "borrowed": "False",
             "user": 2
           }
         },
@@ -51,7 +48,6 @@
                 "track_list": "",
                 "genre": 4,
                 "release_date": "2014-10-27",
-                "borrowed": "False",
                 "user": 2
             }
           }

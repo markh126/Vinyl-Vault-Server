@@ -13,5 +13,6 @@ class RecordSerializer(serializers.ModelSerializer):
                   'genre',
                   'release_date',
                   'borrowed',
+                  'wishlisted',
                   'user')
         depth = 1
