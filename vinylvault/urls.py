@@ -18,10 +18,12 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from vinylvaultapi.views.auth import register_user, check_user
-from vinylvaultapi.views import UserView
+from vinylvaultapi.views import UserView, GenreView, RecordView
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'users', UserView, 'users')
+router.register(r'genres', GenreView, 'genres')
+router.register(r'records', RecordView, 'records')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
