@@ -20,8 +20,9 @@ class RecordView(ViewSet):
     def list(self, request):
         """GET request for a list of records"""
         records = Record.objects.all()
-        uid = request.META['HTTP_AUTHORIZATION']
-        user = User.objects.get(uid=uid)
+        user = request.query_params.get('userId', None)
+        if user is not None:
+            records = records.filter(user=user)
         for record in records:
             record.wishlisted = len(WishlistRecord.objects.filter(
                 record=record, user=user
@@ -60,7 +61,6 @@ class RecordView(ViewSet):
         record.track_list = request.data['trackList']
         record.genre = genre
         record.release_date = request.data['releaseDate']
-        record.borrowed = request.data['borrowed']
         record.user = user
         record.save()
         return Response({'message': 'Record UPDATED'}, status=status.HTTP_204_NO_CONTENT)

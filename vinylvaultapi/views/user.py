@@ -35,3 +35,9 @@ class UserView(ViewSet):
         user.uid = uid
         user.save()
         return Response({'message': 'User UPDATED'}, status=status.HTTP_204_NO_CONTENT)
+
+    def destroy(self, request, pk):
+        """DELETE request to delete a user"""
+        user = User.objects.get(pk=pk)
+        user.delete()
+        return Response({'message': 'User DELETED'}, status=status.HTTP_204_NO_CONTENT)
