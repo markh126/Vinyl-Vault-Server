@@ -18,12 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from vinylvaultapi.views.auth import register_user, check_user
-from vinylvaultapi.views import UserView, GenreView, RecordView, WishlistView, BorrowedView
+from vinylvaultapi.views import UserView, GenreView, RecordView, WishlistView, BorrowedView, UserRecordView
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'users', UserView, 'users')
 router.register(r'genres', GenreView, 'genres')
 router.register(r'records', RecordView, 'records')
+router.register(r'user_records', UserRecordView, 'user_records')
 router.register(r'wishlist', WishlistView, 'wishlist')
 router.register(r'borrowed', BorrowedView, 'borrowed')
 
