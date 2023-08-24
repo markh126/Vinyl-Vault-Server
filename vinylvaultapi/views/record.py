@@ -37,7 +37,7 @@ class RecordView(ViewSet):
     def create(self, request):
         """POST request to create a new record"""
         user = User.objects.get(uid=request.META['HTTP_AUTHORIZATION'])
-        genre = Genre.objects.get(pk=request.data["genreId"])
+        genre = Genre.objects.get(pk=request.data["genre"])
         record = Record.objects.create(
             name = request.data["name"],
             record_image_url = request.data["recordImageUrl"],
@@ -53,7 +53,7 @@ class RecordView(ViewSet):
     def update(self, request, pk):
         """PUT request to update a record"""
         record = Record.objects.get(pk=pk)
-        genre = Genre.objects.get(pk=request.data["genreId"])
+        genre = Genre.objects.get(pk=request.data["genre"])
         user = User.objects.get(pk=request.data["userId"])
         record.name = request.data['name']
         record.record_image_url = request.data['recordImageUrl']
