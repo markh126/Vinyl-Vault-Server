@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from vinylvaultapi.models.borrowed_record import BorrowedRecord
-from vinylvaultapi.serializers import RecordSerializer, UserSerializer
+from vinylvaultapi.serializers.record_serializer import RecordSerializer
+from vinylvaultapi.serializers.user_serializer import UserSerializer
 
 class BorrowedSerializer(RecordSerializer):
     """JSON serializer for borrowed records"""
