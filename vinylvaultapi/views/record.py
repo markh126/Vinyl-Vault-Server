@@ -31,7 +31,7 @@ class RecordView(ViewSet):
             )) > 0
         for record in records:
             record.borrowed = len(BorrowedRecord.objects.filter(
-                record=record, user=user
+                record=record, user=record_user
             )) > 0
         serializer = RecordSerializer(records, many=True, context={'request': request})
         return Response(serializer.data)
@@ -63,7 +63,6 @@ class RecordView(ViewSet):
         record.track_list = request.data['trackList']
         record.genre = genre
         record.release_date = request.data['releaseDate']
-        record.borrowed = request.data['borrowed']
         record.user = user
         record.save()
         return Response({'message': 'Record UPDATED'}, status=status.HTTP_204_NO_CONTENT)

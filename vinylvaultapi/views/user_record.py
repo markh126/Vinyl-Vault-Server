@@ -20,7 +20,7 @@ class UserRecordView(ViewSet):
             )) > 0
         for record in records:
             record.borrowed = len(BorrowedRecord.objects.filter(
-                record=record, user=user
+                record=record, user=record_user
             )) > 0
         serializer = RecordSerializer(records, many=True, context={'request': request})
         return Response(serializer.data)
