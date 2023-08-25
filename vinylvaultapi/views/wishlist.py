@@ -3,7 +3,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import status
 from vinylvaultapi.models import WishlistRecord, User
-from vinylvaultapi.serializers import WishlistSerializer
+from vinylvaultapi.serializers.record_serializer import WishlistSerializer
 
 class WishlistView(ViewSet):
     """Vinyl Vault Wishlist View"""

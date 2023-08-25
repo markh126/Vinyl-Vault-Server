@@ -10,17 +10,7 @@ class UserRecordView(ViewSet):
         """GET request for a list of records"""
         records = Record.objects.all()
         user = request.query_params.get('userId', None)
-        uid = request.META['HTTP_AUTHORIZATION']
-        record_user = User.objects.get(uid=uid)
         if user is not None:
             records = records.filter(user=user)
-        for record in records:
-            record.wishlisted = len(WishlistRecord.objects.filter(
-                record=record, user=record_user
-            )) > 0
-        for record in records:
-            record.borrowed = len(BorrowedRecord.objects.filter(
-                record=record, user=record_user
-            )) > 0
         serializer = RecordSerializer(records, many=True, context={'request': request})
         return Response(serializer.data)
