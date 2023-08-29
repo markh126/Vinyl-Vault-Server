@@ -15,8 +15,11 @@ class Record(models.Model):
     @property
     def wishlisted(self):
         """Custom property that shows if a record is wishlisted"""
-        from .wishlist_record import WishlistRecord
-        return WishlistRecord.objects.filter(record=self).exists()
+        return self.__wishlisted
+
+    @wishlisted.setter
+    def wishlisted(self, value):
+        self.__wishlisted = value
 
     @property
     def borrowed(self):
