@@ -35,18 +35,16 @@ class RecordView(ViewSet):
     def create(self, request):
         """POST request to create a new record"""
         user = User.objects.get(uid=request.META['HTTP_AUTHORIZATION'])
-        genre = Genre.objects.get(pk=request.data["genre"])
         record = Record.objects.create(
             name = request.data["name"],
             record_image_url = request.data["recordImageUrl"],
             artist = request.data["artist"],
-            track_list = request.data["trackList"],
-            genre = genre,
+            spotify_id = request.data["spotifyId"],
             release_date = request.data["releaseDate"],
             user = user
         )
         serializer = RecordSerializer(record)
-        return Response({'message': 'Record Created'}, serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def update(self, request, pk):
         """PUT request to update a record"""

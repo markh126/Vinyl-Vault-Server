@@ -8,8 +8,9 @@ class Record(models.Model):
     record_image_url = models.CharField(max_length=5000)
     artist = models.CharField(max_length=100)
     track_list = models.CharField(max_length=200)
-    genre = models.ForeignKey(Genre, on_delete=models.DO_NOTHING)
+    genre = models.ForeignKey(Genre, on_delete=models.DO_NOTHING, default=1)
     release_date = models.DateField()
+    spotify_id = models.CharField(max_length=100)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     @property
