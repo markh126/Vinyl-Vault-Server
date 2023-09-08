@@ -8,7 +8,7 @@ class RecordSerializer(serializers.ModelSerializer):
     """JSON serializer for records"""
     # Define a SerializerMethodField to include wishlisted data
     borrowed = serializers.SerializerMethodField()
-    # release_date = serializers.DateField(format="%m/%d/%Y")
+    release_date = serializers.DateField(format="%m/%d/%Y")
     class Meta:
         model = Record
         fields = ('id',
@@ -20,6 +20,7 @@ class RecordSerializer(serializers.ModelSerializer):
                   'release_date',
                   'borrowed',
                   'wishlisted',
+                  'spotify_id',
                   'user')
         depth = 1
     
