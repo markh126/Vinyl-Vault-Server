@@ -15,8 +15,6 @@ class RecordSerializer(serializers.ModelSerializer):
                   'name',
                   'record_image_url',
                   'artist',
-                  'track_list',
-                  'genre',
                   'release_date',
                   'borrowed',
                   'wishlisted',
