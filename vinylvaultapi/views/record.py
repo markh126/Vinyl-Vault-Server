@@ -2,12 +2,14 @@ from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework.decorators import action
-from rest_framework import status
+from rest_framework import status, filters
 from vinylvaultapi.models import Record, User, Genre, WishlistRecord, BorrowedRecord
 from vinylvaultapi.serializers import RecordSerializer
 
 class RecordView(ViewSet):
     """Vinyl Vault Record View"""
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name', 'artist']
     def retrieve(self, request, pk):
         """GET request for a single record"""
         try:
@@ -49,14 +51,10 @@ class RecordView(ViewSet):
     def update(self, request, pk):
         """PUT request to update a record"""
         record = Record.objects.get(pk=pk)
-        genre = Genre.objects.get(pk=request.data["genre"])
         user = User.objects.get(pk=request.data["userId"])
         record.name = request.data['name']
         record.record_image_url = request.data['recordImageUrl']
         record.artist = request.data['artist']
-        record.track_list = request.data['trackList']
-        record.genre = genre
-        record.release_date = request.data['releaseDate']
         record.user = user
         record.save()
         return Response({'message': 'Record UPDATED'}, status=status.HTTP_204_NO_CONTENT)
