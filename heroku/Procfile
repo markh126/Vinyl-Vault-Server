@@ -1,2 +1,2 @@
 release: python manage.py migrate
-web: gunicorn vinyl-vault-server.wsgi
+web: gunicorn pure-mountain-46405.wsgi
