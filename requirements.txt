@@ -2,6 +2,7 @@ asgiref==3.7.2
 astroid==2.15.3
 autopep8==2.0.2
 dill==0.3.6
+dj-database-url>=2.0,<3.0
 Django==4.2.1
 django-cors-headers==4.1.0
 djangorestframework==3.14.0

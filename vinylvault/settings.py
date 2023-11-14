@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'vinylvaultapi',
-    'dj_database_url',
 ]
 
 # THIS IS NEW
