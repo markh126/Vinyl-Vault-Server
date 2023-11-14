@@ -11,6 +11,7 @@ djangorestframework = "==3.14.0"
 django-cors-headers = "==3.13.0"
 pylint-django = "==2.5.3"
 dj-database-url = "==2.1.0"
+psycopg2 = "==2.9.9"
 
 [dev-packages]
 
