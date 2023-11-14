@@ -1,2 +1,2 @@
 release: python manage.py migrate
-web: gunicorn vinylvault:app
+web: gunicorn vinylvault.wsgi
